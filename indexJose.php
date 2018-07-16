@@ -38,13 +38,19 @@
       }
     </script>
     <script>
+      var customLabel = {
+        restaurant: {
+          label: 'JJ'
+        },
+        bar: {
+          label: 'B'
+        }
+      };
+
         function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(14.6591102, 120.9860692),
-          zoom: 18,
-          mapTypeId: 'satellite',
-          heading: 270,
-          tilt: 45
+          center: new google.maps.LatLng(-33.863276, 151.207977),
+          zoom: 12
         });
         var infoWindow = new google.maps.InfoWindow;
 
@@ -70,9 +76,11 @@
               var text = document.createElement('text');
               text.textContent = address
               infowincontent.appendChild(text);
+              var icon = customLabel[type] || {};
               var marker = new google.maps.Marker({
                 map: map,
                 position: point,
+                label: icon.label
               });
               marker.addListener('click', function() {
                 infoWindow.setContent(infowincontent);
